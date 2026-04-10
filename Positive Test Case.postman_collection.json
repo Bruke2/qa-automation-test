@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "4e63c11a-b39f-45ae-a91f-25228e490714",
+		"name": "Positive Test Case",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42800512"
+	},
+	"item": [
+		{
+			"name": "post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"success\", function () { // apakah requestnya berhasil atau tidak",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"this is array\", function () { //apakah bentuk dari responsenya itu array?",
+							"    const json = pm.response.json();",
+							"    pm.expect(json).to.be.an(\"array\"); // ini bisa diganti object, string, atau yang lain",
+							"});",
+							"",
+							"pm.test(\"Array is not empty\", function () { // jika array, apakah di arraynya kosong atau ada isinya?",
+							"    const json = pm.response.json();",
+							"    pm.expect(json.length).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"Each post has correct structure\", function () { // apakah disetiap post (id) itu lengkap? (id, userId, title, dan body) ?",
+							"    const json = pm.response.json();",
+							"    json.forEach(post => {",
+							"        pm.expect(post).to.have.property(\"id\");",
+							"        pm.expect(post).to.have.property(\"userId\");",
+							"        pm.expect(post).to.have.property(\"title\");",
+							"        pm.expect(post).to.have.property(\"body\");",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post ke",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"make a new post\",\n    \"body\": \"just test the new post\",\n    \"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
