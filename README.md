@@ -5,7 +5,7 @@ Postman
 - Install Postman (https://www.postman.com/downloads/)
 
 # steps
-- clone this repo (git clone <your-repo-url>)
+- clone this repo (git clone https://github.com/BruKe01/qa-automation-test)
 - open postman
 - import all of three json file
     - Positive Test Case.postman_collection.json
